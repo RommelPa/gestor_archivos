@@ -1,0 +1,128 @@
+/* ============================
+   Tipografía y colores base
+================================*/
+*{
+    font-family: "Segoe UI", sans-serif;
+    font-size: 14px;
+}
+
+/* Fondo principal */
+QMainWindow {
+    background: #f4f6f9;
+}
+
+/* Contenedores principales */
+QWidget#CentralContainer {
+    background: #f4f6f9;
+}
+
+QWidget#LeftPanel {
+    background: #f4f6f9;
+}
+
+QWidget#RightPanel {
+    background: #ffffff;
+    border-left: 1px solid #d0d3d4;
+}
+
+/* Etiquetas */
+QLabel {
+    color: #333;
+}
+
+/* Botones — selector fuerte */
+QPushButton {
+    background-color: #1976d2;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: none;
+}
+
+QPushButton:hover {
+    background-color: #1565c0;
+}
+
+QPushButton:disabled {
+    background-color: #90caf9;
+    color: #eee;
+}
+
+/* Extra: refuerzo para evitar que Qt sobrescriba */
+QWidget QPushButton {
+    background-color: #1976d2;
+    color: white;
+}
+
+/* CheckBox */
+QCheckBox {
+    font-size: 14px;
+    color: #444;
+}
+
+/* Barra de progreso */
+QProgressBar {
+    background: #ddd;
+    border-radius: 5px;
+    height: 22px;
+}
+
+QProgressBar::chunk {
+    background-color: #43a047;
+    border-radius: 5px;
+}
+
+/* Lista de historial */
+QListWidget {
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+QListWidget::item {
+    padding: 6px;
+}
+
+QListWidget::item:selected {
+    background: #bbdefb;
+    color: black;
+}
+
+/* Widgets internos */
+QWidget {
+    background-color: transparent;
+}
+
+QWidget#DropZone {
+    border: 2px dashed #90a4ae;
+    border-radius: 10px;
+    background: #eceff1;
+}
+
+/* Contenedores estilo card */
+QWidget#Card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #dfe4ea;
+    padding: 0px;
+}
+
+QMessageBox {
+    background-color: #ffffff;
+}
+
+QMessageBox QLabel {
+    color: #333333;
+    font-size: 14px;
+}
+
+QMessageBox QPushButton {
+    background-color: #1976d2;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 6px;
+}
+
+QMessageBox QPushButton:hover {
+    background-color: #1565c0;
+}
