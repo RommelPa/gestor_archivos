@@ -23,7 +23,9 @@ class HistoryPanel(QWidget):
 
     def load_history_to_ui(self):
         """Carga historial desde JSON a la lista visual"""
+        self.lista.clear()
         history = load_history()
+
         for entry in history:
             texto = f"{entry['filename']}  →  {entry['destino']}  ({entry['fecha']})"
             self.lista.addItem(texto)
@@ -36,7 +38,7 @@ class HistoryPanel(QWidget):
     def export_pdf(self):
         """Exporta historial a un PDF elegible por el usuario."""
         history = load_history()
-        
+
         if not history:
             print("No hay historial para exportar.")
             return
@@ -56,4 +58,3 @@ class HistoryPanel(QWidget):
         """Genera timestamp para nombres de archivo"""
         from datetime import datetime
         return datetime.now().strftime("%Y%m%d_%H%M%S")
-

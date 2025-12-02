@@ -1,15 +1,32 @@
-import json
 import os
+import json
+import sys
 from datetime import datetime
 
-HISTORY_PATH = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
-    "resources",
-    "history.json"
-)
+def get_history_path():
+    """
+    Devuelve la ruta donde se guardará history.json.
+    En modo ejecutable → AppData/Local/GestorArchivos
+    En desarrollo → resources/history.json
+    """
+    if hasattr(sys, "_MEIPASS"):
+        # Modo ejecutable
+        base = os.path.join(os.getenv("LOCALAPPDATA"), "GestorArchivos")
+    else:
+        # Modo desarrollo
+        base = os.path.join(
+            os.path.dirname(__file__), "..", "..", "resources"
+        )
+
+    os.makedirs(base, exist_ok=True)
+    return os.path.join(base, "history.json")
+
+
+HISTORY_PATH = get_history_path()
+
 
 def load_history():
-    """Carga el historial desde history.json"""
+    """Carga el historial desde JSON."""
     if not os.path.exists(HISTORY_PATH):
         return []
 
@@ -21,13 +38,13 @@ def load_history():
 
 
 def save_history(history):
-    """Guarda el historial completo"""
+    """Guarda el historial completo."""
     with open(HISTORY_PATH, "w", encoding="utf-8") as f:
         json.dump(history, f, indent=4, ensure_ascii=False)
 
 
 def add_entry(filename, destino):
-    """Agrega una entrada al historial"""
+    """Agrega una entrada al historial con fecha y hora."""
     history = load_history()
 
     entry = {

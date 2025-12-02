@@ -1,8 +1,38 @@
-venv/
+# ===== Python =====
 __pycache__/
 *.pyc
-*.log
-dist/
+*.pyo
+*.pyd
+
+# Entorno virtual
+venv/
+.env/
+ENV/
+env/
+
+# ===== PyInstaller =====
 build/
+dist/
 *.spec
-resources/history.json
+
+# ===== Editor / IDE =====
+.vscode/
+.idea/
+
+# Archivos temporales
+*.log
+*.tmp
+
+# Archivos de sistema Windows
+Thumbs.db
+desktop.ini
+
+# ===== Proyecto específico =====
+# Historial generado durante ejecución
+app/resources/history.json
+
+# Archivos creados por el .exe (modo compilado)
+%LOCALAPPDATA%/GestorArchivos/history.json
+
+# PDF generados
+*.pdf
