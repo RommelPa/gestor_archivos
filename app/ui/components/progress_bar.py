@@ -1,6 +1,5 @@
-from PySide6.QtWidgets import QWidget, QHBoxLayout, QLabel, QFrame
+from PySide6.QtWidgets import QWidget, QHBoxLayout, QLabel, QFrame, QSizePolicy
 from PySide6.QtCore import Qt, QPropertyAnimation, QRect
-
 
 class ProgressBarReact(QWidget):
     """
@@ -20,6 +19,7 @@ class ProgressBarReact(QWidget):
 
         self.container = QFrame()
         self.container.setObjectName("ProgressContainer")
+        self.container.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
 
         self.bar = QFrame(self.container)
         self.bar.setObjectName("ProgressBar")
@@ -50,7 +50,6 @@ class ProgressBarReact(QWidget):
         self.progress_value = value
 
         self.label_center.setText(f"{value}%")
-        self.label_right.setText(f"{value}%")
 
         self._update_bar_geometry(value)
 
