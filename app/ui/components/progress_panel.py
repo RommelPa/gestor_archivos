@@ -1,8 +1,9 @@
 import os
 from PySide6.QtWidgets import (
-    QWidget, QPushButton, QCheckBox, QProgressBar, QVBoxLayout, QMessageBox
+    QWidget, QPushButton, QCheckBox, QVBoxLayout, QMessageBox
 )
 from app.core.worker import Worker
+from app.ui.components.progress_bar import ProgressBarReact
 
 class ProgressPanel(QWidget):
     """
@@ -15,8 +16,7 @@ class ProgressPanel(QWidget):
 
         self.chk_email = QCheckBox("Preparar correo en Outlook")
         self.btn_run = QPushButton("Procesar")
-        self.progress = QProgressBar()
-        self.progress.setValue(0)
+        self.progress = ProgressBarReact()
 
         layout = QVBoxLayout()
         layout.addWidget(self.chk_email)
@@ -29,7 +29,6 @@ class ProgressPanel(QWidget):
         """
         Valida todo antes de iniciar el Worker.
         """
-        # Validar archivos
         if not archivos:
             QMessageBox.warning(self, "Sin archivos", "Agrega uno o más archivos primero.")
             return
@@ -42,7 +41,6 @@ class ProgressPanel(QWidget):
                 QMessageBox.critical(self, "Archivo bloqueado", f"El archivo está siendo usado:\n{a}")
                 return
 
-        # Validar destino
         if not destino:
             QMessageBox.warning(self, "Destino requerido", "Selecciona una carpeta destino.")
             return
@@ -55,7 +53,6 @@ class ProgressPanel(QWidget):
             QMessageBox.critical(self, "Sin permisos", "No tienes permisos de escritura en la carpeta destino.")
             return
 
-        # Validar Outlook si se quiere enviar email
         if self.chk_email.isChecked():
             try:
                 import win32com.client
@@ -64,11 +61,9 @@ class ProgressPanel(QWidget):
                 QMessageBox.critical(self, "Outlook no disponible", "No se puede iniciar Outlook.")
                 return
 
-        # Desactivar botón
         self.btn_run.setEnabled(False)
         self.progress.setValue(0)
 
-        # Crear Worker
         self.worker = Worker(
             archivos,
             destino,
@@ -78,7 +73,6 @@ class ProgressPanel(QWidget):
         self.worker.progreso.connect(self.progress.setValue)
         self.worker.completado.connect(self.on_completed)
         self.worker.start()
-
 
     def on_completed(self, rutas):
         self.btn_run.setEnabled(True)

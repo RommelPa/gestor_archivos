@@ -21,9 +21,7 @@ def get_history_path():
     os.makedirs(base, exist_ok=True)
     return os.path.join(base, "history.json")
 
-
 HISTORY_PATH = get_history_path()
-
 
 def load_history():
     """Carga el historial desde JSON."""
@@ -36,12 +34,10 @@ def load_history():
     except Exception:
         return []
 
-
 def save_history(history):
     """Guarda el historial completo."""
     with open(HISTORY_PATH, "w", encoding="utf-8") as f:
         json.dump(history, f, indent=4, ensure_ascii=False)
-
 
 def add_entry(filename, destino):
     """Agrega una entrada al historial con fecha y hora."""

@@ -44,8 +44,8 @@ class MainWindow(QMainWindow):
 
         # LAYOUT PRINCIPAL
         main_layout = QHBoxLayout()
-        main_layout.addWidget(left_widget)
-        main_layout.addWidget(right_widget)
+        main_layout.addWidget(left_widget, 1)
+        main_layout.addWidget(right_widget, 1)
 
         container = QWidget()
         container.setLayout(main_layout)
@@ -56,9 +56,6 @@ class MainWindow(QMainWindow):
         # Conectar eventos
         self.progress_panel.btn_run.clicked.connect(self.on_run_clicked)
 
-    # ----------------------------------------
-    # RECIBE LA LISTA DE ARCHIVOS PROCESADOS
-    # ----------------------------------------
     def on_process_completed(self, archivos_finales):
         if not archivos_finales:
             QMessageBox.critical(
@@ -69,7 +66,6 @@ class MainWindow(QMainWindow):
             )
             return
 
-        # Algunos omitidos -> advertencia
         if len(archivos_finales) < len(self.file_selector.archivos):
             QMessageBox.warning(
                 self,
@@ -78,7 +74,6 @@ class MainWindow(QMainWindow):
                 "Revisa permisos o archivos abiertos."
             )
 
-        # Añadir cada archivo al historial
         for archivo_final in archivos_finales:
             filename = os.path.basename(archivo_final)
             destino = os.path.dirname(archivo_final)

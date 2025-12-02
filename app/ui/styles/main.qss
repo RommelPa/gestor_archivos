@@ -126,3 +126,45 @@ QMessageBox QPushButton {
 QMessageBox QPushButton:hover {
     background-color: #1565c0;
 }
+
+QTableWidget {
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    gridline-color: #ddd;
+}
+
+QHeaderView::section {
+    background: #eef5ff;
+    padding: 6px;
+    font-weight: bold;
+    border: 1px solid #d0e3ff;
+}
+
+QTableWidget::item {
+    padding: 8px;
+}
+
+QTableWidget::item:selected {
+    background: #bbdefb;
+    color: black;
+}
+
+/* -------- PROGRESS BAR REACT STYLE -------- */
+
+#ProgressContainer {
+    background: #d0d7de;
+    border-radius: 10px;
+    min-height: 28px;
+}
+
+#ProgressBar {
+    background: #1976d2;
+    border-radius: 10px;
+}
+
+#ProgressRight {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}

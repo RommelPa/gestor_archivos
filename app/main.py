@@ -19,7 +19,6 @@ def resource_path(relative_path: str) -> str:
 def main():
     app = QApplication([])
 
-    # Cargar estilo QSS
     qss_path = resource_path("ui/styles/main.qss")
 
     if os.path.exists(qss_path):
@@ -35,6 +34,5 @@ def main():
 
 
 if __name__ == "__main__":
-    # IMPORTANTE PARA IMPORTAR app.*
     sys.path.append(os.path.dirname(os.path.dirname(__file__)))
     main()
